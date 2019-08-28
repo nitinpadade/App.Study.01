@@ -22,7 +22,7 @@ namespace App.Common
                     name = authTicket.Name.Split('|')[0];
                 }
 
-                return name;
+                return name; 
             }
         }
 
