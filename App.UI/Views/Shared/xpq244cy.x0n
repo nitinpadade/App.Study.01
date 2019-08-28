@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+@using App.Common
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - MVC Framework Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">@Html.ActionLink("MVC Framework Application", "Index", "Dashboard")</p>
+                <br />
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    @LoginUserInfo.Name&nbsp;&nbsp;&nbsp;[ @LoginUserInfo.Role ]&nbsp;&nbsp;>>@Html.ActionLink("Logout", "Logout", "Home")
+                </section>
+                <nav>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+
+            <article>
+                @RenderBody()
+            </article>
+            <aside>
+                <ul>
+                    <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                    <li>@Html.ActionLink("User", "Index", "User")</li>
+                    <li>@Html.ActionLink("Branch", "Index", "Branch")</li>
+                    <li>@Html.ActionLink("Course", "Index", "Course")</li>
+                </ul>
+            </aside>
+        </section>
+
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - MVC Framework Application</p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>

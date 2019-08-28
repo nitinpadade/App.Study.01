@@ -1,0 +1,157 @@
+﻿@using App.Common
+@using System.Configuration
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Study</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="@Url.Content("~/css/shop-homepage.css")" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery -->
+    <script src="@Url.Content("~/js/jquery.js")"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="@Url.Content("~/js/bootstrap.js")"></script>
+    <!-- Validation -->
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive-custom-for-bootstrap.js")"></script>
+    <script src="@Url.Content("~/Scripts/ckeditor/ckeditor.js")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            @*var url = '@ConfigurationManager.AppSettings["UrlPath"].ToString()' + "AddToCart/CartCount/";
+            $.get(url, null, function (data) {
+                $("#cartCount").html(data.result.toString());
+            });*@
+        });
+       
+    </script>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        @Html.ActionLink("Study", "Index/", "Dashboard")
+                    </li>
+
+                    @if (string.IsNullOrEmpty(LoginUserInfo.Name))
+                    {
+                        <li class="active">@Html.ActionLink("Login", "Login", "Home")</li>
+                    }
+                    else
+                    {
+
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;Welcome&nbsp;@LoginUserInfo.Name &nbsp;&nbsp;<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">@Html.ActionLink("Logout", "Logout", "Home")</a></li>
+                            </ul>
+                        </li>
+
+                        if (LoginUserInfo.RoleId == 1)
+                        {
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;Post & Categories &nbsp;&nbsp;<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">@Html.ActionLink("Posts", "Index", "Post")</a></li>
+                                    <li><a href="#">@Html.ActionLink("Categories", "Index", "Category")</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                        @*if (LoginUserInfo.RoleId != 1)
+                            {
+                                <li class="active">
+                                    <a href="@ConfigurationManager.AppSettings["UrlPath"].ToString()AddToCart/ViewCart">
+                                        <img src="@Url.Content("~/Images/bluecart.png")" title="View Cart" />
+                                        (<b id="cartCount" style="color:white;"></b>)
+                                    </a>
+                                </li>
+                                <li class="active">@Html.ActionLink("View Orders", "Index", "Orders")</li>
+                            }*@
+
+<li class="active">@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    }
+                </ul>
+            </div>            <!-- /.navbar-collapse -->
+
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Categories</p>
+                <div class="list-group">
+                    @Html.Action("Categories", "Dashboard")
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row carousel-holder">
+                    <div class="col-md-12">
+                        @RenderBody()
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+    <div class="container">
+        <hr>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; PSL Music Store @System.DateTime.Now.Year.ToString()</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- /.container -->
+
+</body>
+</html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+
+    </div>
+</body>
+</html>

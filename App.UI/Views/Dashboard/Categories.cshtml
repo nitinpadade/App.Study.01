@@ -1,0 +1,6 @@
+﻿@model IEnumerable<App.Core.ViewModels.CategoryListModel>
+
+@foreach (var x in Model)
+{
+    @Html.ActionLink(@x.Name, "Index", new { id = x.Id }, new { @class = "list-group-item" })
+}

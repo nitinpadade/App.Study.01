@@ -1,0 +1,16 @@
+﻿@model App.Core.Details.PostDetails
+
+@{
+    ViewBag.Title = "Post";
+}
+
+@*<hgroup class="title" style="font-size: 24px;">
+    @Model.Title
+</hgroup>
+<hr />*@
+<p style="text-align: right;">
+    @Html.ActionLink("Post List", "Index", new { id = Model.CategoryId })
+</p>
+<hr />
+@Html.Raw(Model.Details)
+

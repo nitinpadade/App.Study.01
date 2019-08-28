@@ -1,0 +1,18 @@
+﻿@model IEnumerable<App.Core.ViewModels.PostTitleModel>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<hgroup class="title" style="font-size: 24px;">
+    Post List
+</hgroup>
+<hr />
+<p style="text-align: right;">
+   @Html.ActionLink("View All", "Index/")
+</p>
+@foreach (var x in Model)
+{
+    @Html.ActionLink(@x.Title, "Post", new { id = x.Id }, new { @class = "list-group-item" })
+}

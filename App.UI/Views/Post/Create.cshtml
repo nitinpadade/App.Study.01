@@ -1,0 +1,88 @@
+﻿@model App.Core.ViewModels.PostCmdModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<hgroup class="title" style="font-size: 24px;">
+    Create Post
+</hgroup>
+<hr />
+<p style="text-align: right;">
+    @Html.ActionLink("Post List", "Index")
+</p>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)   
+
+    <form>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryId)
+            @Html.DropDownListFor(model => model.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "-- Select --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CategoryId)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title)
+            @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Details)
+            @Html.TextAreaFor(model => model.Details, new { @class = "ckeditor", @id = "txtDetails" })
+            @Html.ValidationMessageFor(model => model.Details)
+        </div>
+        <div class="checkbox">
+            <label>@Html.CheckBoxFor(model => model.IsPublished) Is Published</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+
+    @*<fieldset>
+            <legend>PostCmdModel</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CategoryId)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "-- Select --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+            <div class="editor-label">
+                <br />
+                @Html.LabelFor(model => model.Title)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+            <div class="editor-label">
+                <br />
+                @Html.LabelFor(model => model.Details)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Details, new { @class = "ckeditor", @id = "txtDetails" })
+                @Html.ValidationMessageFor(model => model.Details)
+            </div>
+
+            <div class="editor-label">
+                <br />
+                @Html.LabelFor(model => model.IsPublished)
+            </div>
+            <div class="editor-field">
+                @Html.HiddenFor(model => model.IsPublished)
+                @Html.ValidationMessageFor(model => model.IsPublished)
+            </div>
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>*@
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
